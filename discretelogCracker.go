@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"math"
+	"math/big"
 	"strconv"
 	"sync"
 )
@@ -23,7 +23,7 @@ func init() {
 
 func main() {
 	// 7^x = 11 % 13
-	for x := 0; x < 20; x++ {
+	for x := 1; x < 500; x++ {
 		wg.Add(1)
 		// Tests the exponent x
 		go testNum(x)
@@ -33,10 +33,20 @@ func main() {
 	fmt.Println("All Done")
 }
 func testNum(x int) {
+
+	result := big.Int{}
+	firstNum := big.NewInt(int64(x))
+	secondNum := big.NewInt(int64(b))
+	po := big.NewInt(int64(p))
+
 	// performs the opperation 7^x
-	sevenmodx := int(math.Pow(float64(b), float64(x)))
+	powerx := result.Exp(secondNum, firstNum, nil)
 	// Tests if its congruent
-	if sevenmodx%m == p%m {
+	bigintm := new(big.Int).SetInt64(int64(m))
+
+	xMod := new(big.Int).Mod(powerx, bigintm)
+	powerMod := new(big.Int).Mod(po, bigintm)
+	if xMod.String() == powerMod.String() {
 		// Prints out value on success
 		fmt.Println(strconv.Itoa(x) + ": WORKS")
 	}
