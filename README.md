@@ -1,6 +1,9 @@
 # Crypto-Toolkit
 A collection of tools that help make Crypto easier. Most tools here were created as part of an assignment for my Crypto class.
 
+# Functionality
+Some programs here dont work. This repo is a constant work in progress.
+
 ## Helpful external tools:
 
 - General Crypto tool: https://gchq.github.io/CyberChef/
